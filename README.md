@@ -1,1 +1,354 @@
-# Aegis-GRC-Agentic-AI-Risk-Register-Guardrail-Auditor
+================================================================================
+
+AEGIS-GRC: AGENTIC AI RISK REGISTER & GUARDRAIL AUDITOR
+
+GitHub Repository Project Report & Architecture Documentation
+
+================================================================================
+
+Author      : Rushikesh Shamkant Kulkarni (Pune, Maharashtra, India)
+
+Version     : 1.0.0
+
+Standards   : ISO/IEC 42001:2023 | NIST AI RMF 1.0 & NIST AI 600-1
+
+Threats     : OWASP Top 10 for LLMs (2025) | MITRE ATLAS (AML.T0051 / T1698)
+
+================================================================================
+
+
+
+1. EXECUTIVE SUMMARY & PROJECT PURPOSE
+
+--------------------------------------------------------------------------------
+
+Aegis-GRC is a Python and FastAPI governance, risk, and compliance (GRC)
+
+auditing engine designed to translate technical Large Language Model (LLM) and
+
+agentic AI architecture controls into verifiable compliance mappings. Built as
+
+a companion governance layer for autonomous security operations platforms such
+
+as Aegis-SOC, Aegis-GRC automates four core audit functions:
+
+
+
+  1) AI System Inventory & Autonomy Classification (Level 1 to Level 3)
+
+  2) Inherent & Residual Risk Tiering with OWASP LLM / MITRE ATLAS Mapping
+
+  3) Regulatory Crosswalk across ISO/IEC 42001:2023 and NIST AI RMF 1.0 / 600-1
+
+  4) Agentic Guardrail Gap Analysis & Actionable Engineering Remediation
+
+
+
+2. SYSTEM ARCHITECTURE DIAGRAMS (MERMAID & ASCII)
+
+--------------------------------------------------------------------------------
+
+
+
+2.1 Mermaid Architecture Diagram (Paste directly into GitHub README.md)
+
+
+
+```mermaid
+
+flowchart LR
+
+    A[AI System Architecture JSON] --> B[Autonomy & Risk Classifier]
+
+    B --> C[AI Risk Register Engine]
+
+    C --> D[ISO 42001 & NIST AI RMF Mapper]
+
+    D --> E[Guardrail Gap & Fix Analyzer]
+
+    E --> F[Markdown / JSON Audit Report]
+
+
+
+    subgraph Guardrails Evaluated
+
+        G1[Aegis-SOC HITL Gate]
+
+        G2[T1698 Prompt-Injection Filter]
+
+        G3[Policy-as-Code RBAC]
+
+        G4[Immutable SIEM Audit Log]
+
+    end
+
+    G1 & G2 & G3 & G4 --> D
+
+```
+
+
+
+2.2 ASCII End-to-End Audit Pipeline
+
+
+
++------------------------+      +---------------------------+
+
+| AISystemInput (JSON)   | ---> | Autonomy & Risk Classifier|
+
+| - Permissions / PII    |      | - Level 1 / 2 / 3         |
+
+| - Blast Radius / HITL  |      | - Low / Mod / High / Crit |
+
++------------------------+      +---------------------------+
+
+                                              |
+
+                                              v
+
++------------------------+      +---------------------------+
+
+| Guardrail Gap Analyzer | <--- | AI Risk Register Engine   |
+
+| - Control Strengths    |      | - OWASP LLM01, LLM06, 07  |
+
+| - Identified Gaps      |      | - MITRE ATLAS AML.T0051   |
+
+| - Engineering Fixes    |      | - Inherent -> Residual    |
+
++------------------------+      +---------------------------+
+
+            |
+
+            v
+
++-----------------------------------------------------------+
+
+| Framework Control Crosswalk & Audit Evidence Output       |
+
+| - ISO/IEC 42001:2023 (Clauses 4-10 & Annex A.2 - A.10)    |
+
+| - NIST AI RMF 1.0 & AI 600-1 (GV, MP, MS, MG)             |
+
++-----------------------------------------------------------+
+
+
+
+3. STEP-BY-STEP METHODOLOGY & REFERENCE AUDIT (AEGIS-SOC CASE STUDY)
+
+--------------------------------------------------------------------------------
+
+
+
+STEP 1: AI System Inventory & Autonomy Classification
+
+- System Name & Purpose : Aegis-SOC Autonomous Alert Triage & Guardrailed IR
+
+                          Engine — Multi-agent SOC alert triage, SIEM
+
+                          enrichment, and guardrailed identity session
+
+                          revocation via LangGraph and Model Context Protocol.
+
+- Autonomy Level        : Level 2: Semi-Autonomous / HITL-Gated
+
+                          (System holds write/execution permissions for Okta and
+
+                          Entra ID revocation, gated by human-in-the-loop hooks.)
+
+- Inherent Risk Tier    : High — Driven by state-changing tool/API execution,
+
+                          enterprise blast radius, and sensitive PII/identity
+
+                          telemetry exposure.
+
+
+
+STEP 2: AI Risk Register (Top Identified Risks)
+
++------------+-------------------------------+-------------------------------+----------+------------------------------------+----------+
+
+| Risk ID    | Threat / Failure Mode         | Technical Impact              | Inherent | Mapped Technical Control           | Residual |
+
++------------+-------------------------------+-------------------------------+----------+------------------------------------+----------+
+
+| AI-RISK-01 | Indirect Prompt Injection     | Hijacks agent reasoning loop  | Critical | T1698 prompt-injection defense &   | Moderate |
+
+|            | (LLM01:2025 / AML.T0051.001)  | to trigger unauthorized tools |          | structured XML/JSON delimiters     |          |
+
++------------+-------------------------------+-------------------------------+----------+------------------------------------+----------+
+
+| AI-RISK-02 | Excessive Agency              | Unauthorized account/host     | High     | Aegis-SOC HITL approval hooks &    | Low      |
+
+|            | (LLM06:2025 / AML.T0054)      | isolation or revocation       |          | Policy-as-Code RBAC                |          |
+
++------------+-------------------------------+-------------------------------+----------+------------------------------------+----------+
+
+| AI-RISK-03 | Sensitive Info & Prompt Leak  | Exposure of PII, API keys, or | High     | MISSING: Automated output DLP &    | High     |
+
+|            | (LLM02:2025 / LLM07:2025)     | system instructions           |          | system-prompt boundary checks      |          |
+
++------------+-------------------------------+-------------------------------+----------+------------------------------------+----------+
+
+| AI-RISK-04 | Confabulation / Hallucination | False-positive escalations or | High     | Deterministic Pydantic schema      | Moderate |
+
+|            | (LLM09:2025 / AI 600-1)       | fabricated IOC evidence       |          | validation & grounded tool outputs |          |
+
++------------+-------------------------------+-------------------------------+----------+------------------------------------+----------+
+
+| AI-RISK-05 | Model / MCP Supply Chain      | Upstream drift or compromised | Moderate | Scoped MCP server allowlists &     | Low      |
+
+|            | (LLM03:2025 / AI 600-1)       | external MCP tool server      |          | pinned model versions              |          |
+
++------------+-------------------------------+-------------------------------+----------+------------------------------------+----------+
+
+
+
+STEP 3: Framework Control Mapping (ISO/IEC 42001 & NIST AI RMF)
+
+- Aegis-SOC HITL Approval Gate
+
+  * ISO/IEC 42001 : Clause 6.1.3 / Annex A.6.2.2 & A.9.2
+
+  * NIST AI RMF   : MANAGE MG-2.2 & GOVERN GV-1.3
+
+  * Audit Artifact: Signed approval/rejection webhook logs with approver ID,
+
+                    timestamp, action payload hash, and rationale.
+
+
+
+- T1698 Prompt-Injection Defense & Input Sanitization
+
+  * ISO/IEC 42001 : Annex A.6.2.6 & A.7.2 (Data/Input Integrity)
+
+  * NIST AI RMF   : MEASURE MS-2.5 & MAP MP-2.3
+
+  * Audit Artifact: Red-team adversarial test suite results (AML.T0051.000/.001)
+
+                    and blocked-prompt SIEM event logs.
+
+
+
+- Deterministic Policy-as-Code & Scoped Tool RBAC
+
+  * ISO/IEC 42001 : Annex A.4.2 & A.9.4 (Intended Use Boundaries)
+
+  * NIST AI RMF   : GOVERN GV-1.2 & MANAGE MG-2.4
+
+  * Audit Artifact: OPA/Rego or Python policy bundle, IAM least-privilege role
+
+                    manifests, and denied-execution audit logs.
+
+
+
+- Immutable Agentic Telemetry & Action Audit Trail
+
+  * ISO/IEC 42001 : Clause 9.1 & Annex A.6.2.8 (Event Logging)
+
+  * NIST AI RMF   : MEASURE MS-4.1 & MANAGE MG-1.1
+
+  * Audit Artifact: Append-only SIEM/WORM logs capturing prompt hashes, tool
+
+                    calls, latency, and human override events.
+
+
+
+STEP 4: Guardrail Gap Analysis & Actionable Engineering Fixes
+
+- Control Strengths:
+
+  1) HITL approval hooks satisfy NIST MG-2.2 and ISO/IEC 42001 A.9.2.
+
+  2) T1698 prompt-injection screening mitigates OWASP LLM01 & MITRE AML.T0051.
+
+  3) Policy-as-Code RBAC enforces deterministic boundaries independent of LLM.
+
+- Identified Gaps:
+
+  1) Missing automated output DLP & system-prompt leakage filter (LLM02/LLM07).
+
+  2) Missing formal ISO/IEC 42001 Clause 6.1.4 / Annex A.5 AI Impact Assessment.
+
+  3) Missing automated post-deployment model/prompt drift monitoring (NIST MS-3.1).
+
+- Actionable Engineering Fixes:
+
+  1) Deploy regex/NER output redaction middleware on all FastAPI/MCP responses.
+
+  2) Author an ISO/IEC 42001 Annex A.5 AI Impact Assessment for SOC workflows.
+
+  3) Schedule weekly golden-dataset regression tests in CI/CD to track drift.
+
+
+
+4. REPOSITORY STRUCTURE & VERIFICATION
+
+--------------------------------------------------------------------------------
+
+Aegis-GRC/
+
+|-- README.md
+
+|-- requirements.txt
+
+|-- .gitignore
+
+|-- examples/
+
+|   |-- aegis_soc_architecture.json
+
+|-- src/
+
+|   |-- aegis_grc/
+
+|       |-- __init__.py
+
+|       |-- models.py
+
+|       |-- frameworks.py
+
+|       |-- auditor.py
+
+|       |-- api.py
+
+|       |-- cli.py
+
+|-- tests/
+
+|   |-- test_auditor.py
+
+|-- docs/
+
+    |-- Aegis-GRC_Project_Report.pdf
+
+    |-- Aegis-GRC_GitHub_Project_Report.txt
+
+
+
+Verified Test Execution (python3 -m unittest discover -s tests -v):
+
+- test_aegis_soc_audit_classification ... OK
+
+- test_fastapi_endpoints              ... OK
+
+- test_unbounded_level3_critical_risk ... OK
+
+Result: Ran 3 tests in 0.019s - OK
+
+
+
+5. AUTHORITATIVE REFERENCES
+
+--------------------------------------------------------------------------------
+
+- ISO/IEC 42001:2023 Annex A Controls: https://www.isms.online/iso-42001/checklist/
+
+- NIST AI 600-1 Generative AI Profile: https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf
+
+- OWASP Top 10 for LLM Apps (2025)   : https://genai.owasp.org/llm-top-10/
+
+- MITRE ATLAS (AML.T0051)            : https://atlas.mitre.org/
+
+================================================================================
+
