@@ -1,0 +1,21 @@
+{
+  "system_name": "Aegis-SOC Autonomous Alert Triage & Guardrailed IR Engine",
+  "purpose": "Multi-agent SOC alert triage, SIEM enrichment, and guardrailed identity session revocation via LangGraph and Model Context Protocol (MCP).",
+  "model_provider": "Enterprise LLM API (Zero-Data-Retention Tier)",
+  "has_pii_or_sensitive_data": true,
+  "has_write_or_exec_permissions": true,
+  "blast_radius": "Enterprise",
+  "human_in_the_loop": true,
+  "existing_guardrails": [
+    "Aegis-SOC Human-in-the-Loop (HITL) approval hooks for Okta/Entra ID session revocation",
+    "T1698 prompt-injection defense & structured XML/JSON delimiters for SIEM logs",
+    "Deterministic Policy-as-Code RBAC & scoped MCP tool allowlists",
+    "Immutable SIEM/SQLite audit logging for all agent reasoning and tool calls",
+    "Pydantic deterministic output schema validation"
+  ],
+  "telemetry_sources": [
+    "Wazuh & Elastic SIEM",
+    "Okta / Microsoft Entra ID Audit Logs",
+    "FastAPI & SQLite Action Ledger"
+  ]
+}
